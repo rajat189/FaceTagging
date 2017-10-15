@@ -24,3 +24,4 @@ Ajax is used to fetch the data.
 - python manage.py createsuperuser
 - python manage.py unserver
 - open 127.0.0.1:8000/images/ in browser.
+- open 127.0.0.1:8000/api/ (for json data)
