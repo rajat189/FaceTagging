@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+
+</head>
+<body>
+<div id="imgtag">
+    {% load static %}
+    <img src="{% static curr_pic.name %}" alt="my image" width="500" height="400"/>
+    {% if curr_pic %}
+        <h1>{{ curr_pic.name }}</h1>
+    {% endif %}
+    <div id="tagbox">
+    </div>
+</div>
+<div id="taglist" style="background-color: #2a7aaf">
+    {% csrf_token %}
+    <span class="tagtitle" style="">List of Tags</span>
+    <ol>
+    </ol>
+</div>
+<script>
+$(document).ready(function () {
+    var mouseX = 0;
+    var mouseY = 0;
+
+    $("#imgtag img").click(function (e) {
+        var imgtag = $(this).parent();
+        console.log(imgtag);
+        mouseX = e.pageX - $(imgtag).offset().left;
+        mouseY = e.pageY - $(imgtag).offset().top;
+        $('#tagit').remove();
+        $(imgtag).append("<div id='tagit'><div class='box'></div><div class='name'><div class='text'>Type any name or tag</div>{% csrf_token %}<input type='text' name='txtname' id='tagname' /><input type='button' name='btnsave' value='Save' id='btnsave' /><input type='button' name='btncancel' value='Cancel' id='btncancel' /></div></div>");
+        $('#tagit').css({top: mouseY, left: mouseX});
+        $('#tagname').focus();
+    });
+
+    $('#tagit #btnsave').live('click', function () {
+        name = $('#tagname').val();
+        $.ajax({
+            type: "POST",
+            url: "savetag/",
+            data: {
+                name: $('#tagname').val(),
+                pic_x: mouseX,
+                pic_y: mouseY,
+                type: "insert",
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            cache: true,
+            success: function (data) {
+                viewtag();
+                $('#tagit').fadeOut();
+            }
+        });
+
+    });
+    $('#tagit #btncancel').live('click', function () {
+        $('#tagit').fadeOut();
+
+    });
+
+    $('#taglist li').live('mouseover mouseout', function (event) {
+        id = $(this).attr("rel");
+        if (event.type == "mouseover") {
+            $('#view_' + id).show();
+        } else {
+            $('#view_' + id).hide();
+        }
+    });
+    $('#taglist li a.remove').live('click', function () {
+        id = $(this).parent().attr("rel");
+        $.ajax({
+            type: "POST",
+            url: "savetag/",
+            data: {
+                tag_id: id,
+                type: "remove",
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function (data) {
+                viewtag();
+            }
+        });
+    });
+    viewtag();
+    function viewtag(picId) {
+        $.ajax({
+            type: "POST",
+            url: "savetag/",
+            data: {
+                pic_id: picId,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            cache: true,
+            success: function (data) {
+                $('#taglist ol').html(data);
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "taglist/",
+            data: {
+                pic_id: picId,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            cache: true,
+            success: function (data) {
+                $('#tagbox').html(data);
+            }
+        });
+    }
+});
+</script>
+</body>
+</html>
