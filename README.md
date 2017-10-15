@@ -25,3 +25,5 @@ Ajax is used to fetch the data.
 - python manage.py runserver
 - open 127.0.0.1:8000/images/ in browser.
 - open 127.0.0.1:8000/api/ (for json data)
+
+![2](https://user-images.githubusercontent.com/10284360/31588261-0b104f38-b20d-11e7-932e-3b24fd2c7c0b.jpg)
