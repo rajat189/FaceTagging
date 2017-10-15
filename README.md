@@ -18,3 +18,9 @@ It contains imfomation of tags related to a image.
 "details.html" - It will show details related to a images (all the tags).
 
 Ajax is used to fetch the data.
+
+## Deployment
+- python manage.py migrate
+- python manage.py createsuperuser
+- python manage.py unserver
+- open 127.0.0.1:8000/images/ in browser.
