@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .body{
+            background-color: brown;
+        }
+        #imgtag
+        {
+            position:relative;
+            min-width:300px;
+            min-height:300px;
+            float:left;
+            border:solid 3px #fff;
+            cursor: crosshair;
+        }
+        .tagview
+        {
+            border:solid 3px #fff;
+            width:100px;
+            height:100px;
+            position:absolute;
+            display:none;
+        }
+        #tagit
+        {
+            position:absolute;
+            top:0;left:0;
+            width:250px;
+        }
+        #tagit .box
+        {
+            border:solid 3px #fff;
+            width:100px;
+            height:100px;
+            float:left;
+        }
+
+        #tagit .name
+        {
+            float:left;
+            background-color:#fff;
+            width:130px;
+            height:80px;
+            padding:5px;
+        }
+        #tagit div.text
+        {
+            margin-bottom:5px;
+        }
+        #tagit input[type=text]
+        {
+            margin-bottom:5px;
+        }
+        #tagit #tagname
+        {
+            width:110px;
+        }
+        #taglist
+        {
+            background-color: rgba(41, 134, 165, 0.74);
+            width:300px;
+            min-height:200px;
+            height:auto !important;
+            height:200px;
+            float:left;
+            padding:10px;
+            margin-left:20px;
+            color:#000;
+
+        }
+        #taglist ol { padding:0 20px;float:left;cursor:pointer}
+        #taglist ol a { }
+        #taglist ol a:hover { text-decoration:underline }
+        .tagtitle
+        {
+            font-size:14px;
+            text-align:center;
+            width:100%;
+            float:left;
+        }
+    </style>
+</head>
+<body style="background-color: brown">
+<div id="imgtag">
+    <img src="image1.jpg" alt="my image" width="500" height="400"/>
+    <h1>Image1</h1>
+    <div id="tagbox">
+        <div class="tagview" style="left:250px;top:300px;" id="view_1">
+            <label style="color: white">Tag1</label>
+        </div>
+    </div>
+</div>
+<div id="taglist" style="background-color: #2a7aaf">
+    <span class="tagtitle" style="">List of Tags</span>
+    <ol>
+        <li rel="tag_id"><a>Tag1</a> <a class="remove">Remove</a></li>
+        <li rel="tag_id"><a>Tag2</a> <a class="remove">Remove</a></li>
+        <li rel="tag_id"><a>Tag3</a> <a class="remove">Remove</a></li>
+    </ol>
+</div>
+<div id='tagit'>
+    <div class='box'></div>
+    <div class='name'>
+        <div class='text'>Type any name or tag</div>
+        <input type='text' name='txtname' id='tagname' />
+        <input type='button' name='btnsave' value='Save' id='btnsave' />
+        <input type='button' name='btncancel' value='Cancel' id='btncancel' />
+    </div>
+</div>
+
+
+</body>
+</html>

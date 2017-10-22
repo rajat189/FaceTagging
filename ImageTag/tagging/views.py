@@ -60,7 +60,7 @@ def taglist(request,p_id):
 class TagList(APIView):
 
 	def get(self, request, format=None):
-		tags = Picture_tags.objects.all()
+		tags = Picture_tags.objects.filter(pic_id=5)
 		serializer = TagSerializer(tags, many=True)
 		return Response(serializer.data)
 
