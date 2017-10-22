@@ -27,3 +27,11 @@ Ajax is used to fetch the data.
 - open 127.0.0.1:8000/api/ (for json data)
 
 ![2](https://user-images.githubusercontent.com/10284360/31588261-0b104f38-b20d-11e7-932e-3b24fd2c7c0b.jpg)
+
+# React Deployment
+- intsall npm
+- npm install -g babel babel-cli
+- npm create-react-app
+- npm i webpack webpack-dev-server react react-dom jquery --save
+- npm start
+
